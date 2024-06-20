@@ -48,7 +48,7 @@ df = df.coalesce(2)
 
 #### q2.3 Key difference
 
-1 **Shuffling:**
+**1 Shuffling:**
 
 - `repartition` involves a full shuffle of the data, ensuring that the data is evenly distributed across the new partitions.
 - `coalesce` minimizes shuffling by merging existing partitions, which can lead to uneven distribution but is more efficient.
@@ -58,7 +58,7 @@ df = df.coalesce(2)
 - `repartition` is more computationally and network-intensive due to the shuffle.
 - `coalesce` is more efficient as it avoids a full shuffle, making it faster for reducing partitions.
 
-3 **Use Case:**
+**3 Use Case:**
 
 - Use `repartition` when you need to change the number of partitions significantly and ensure even distribution, especially when increasing partitions.
 - Use `coalesce` when reducing the number of partitions, particularly in situations where you want to avoid the overhead of a full shuffle.
@@ -67,45 +67,87 @@ In summary, choose `repartition` when you need a balanced number of partitions r
 
 ### Q3: What's the data skew?
 
-Data skew occurs when data is unevenly distributed across partitions, causing some partitions to have significantly more data than others. This imbalance can lead to performance bottlenecks, as some tasks take much longer to process than others, resulting in inefficient use of resources and longer overall job completion times.
+There are more context. Please check: [Data Skew notes](./Data Engineer/Data Skew.md)
 
-#### Cause of data skew
 
-**1 Highly Skewed Data:**
-
-- When certain keys or values are much more frequent than others, leading to partitions with a disproportionately large amount of data.
-
-**2 Improper Partitioning:**
-
-- When data is not partitioned properly, some partitions might end up with much more data than others.
-
-**3 Joins on Skewed Keys:**
-
-- Performing join operations on keys that are not evenly distributed can lead to skewed partitions, especially if a key in one dataset has many corresponding entries in another.
 
 ### Q4: What you should do when you need to consume Kafka message?
+
+There are more context and codes. Please check: [Streaming notes](./Data Engineer/PySpark Streaming.md)
 
 
 
 ### Q5: Data Modelling experience.
 
-Please check: [Data Modelling notes](./Data Modelling.md)
+There is more context. Please check: [Data Modelling notes](./Data Engineer/Data Modelling.md)
+
+
+
+## Q6: Concepts: full load, increasement load, slow changing dimensions
+
+### Full load
+
+**Definition**: A full load involves loading the entire dataset from the source into the target system. This process overwrites the existing data in the target system, replacing it with a fresh copy of the data from the source.
+
+**When to Use**:
+
+- When the dataset is relatively small and can be loaded quickly.
+- When data needs to be completely refreshed.
+- Initial loading of the data warehouse.
+
+**Advantages**:
+
+- Simplicity: Easier to implement and understand.
+- Consistency: Ensures the target system is always in sync with the source.
+
+**Disadvantages**:
+
+- Inefficient for large datasets: Can be time-consuming and resource-intensive.
+- Overwrites all data: Changes to data in the target system are lost.
+
+
+
+### Incremental Load
+
+**Definition**: An incremental load (or delta load) involves loading only the data that has changed (new, updated, or deleted records) since the last load. This approach is more efficient for large datasets, as it minimizes the amount of data transferred and processed.
+
+**When to Use**:
+
+- When working with large datasets.
+- When only a portion of the data changes frequently.
+- For ongoing data integration where real-time or near-real-time updates are required.
+
+**Advantages**:
+
+- Efficiency: Reduces the amount of data processed and transferred.
+- Performance: Faster loading times and lower resource usage.
+
+**Disadvantages**:
+
+- Complexity: More complex to implement and maintain.
+- Data Consistency: Requires mechanisms to track changes accurately.
+
+### Slow Changing Dimensions
+
+There is more context. Please check: [SCD notes](./Data Engineer/SCD.md)
 
 
 
 ## Python Developer
 
+dict[class]: value ?
+
 
 
 ## Linux
+
+cat, grep, find, `>`, `>>`
 
 
 
 ## Git
 
-
-
-
+rebase, merge
 
 
 
