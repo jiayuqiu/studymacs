@@ -2,12 +2,20 @@
 
 ## Data Engineer
 
-### Q1: How to rename a column of a dataframe?
+### Q1: How to rename/drop/add a column of a dataframe?
 
 ```python
 # rename 'ein1' as to 'ein'
 snat_sdf = snat_sdf.withColumnRenamed(existing="ein1", new="ein")
+
+# drop, column `ein`
+snat_sdf = snat_sdf.drop("ein")
+
+# add, column `new_age`
+snat_sdf = snat_sdf.withColumn("new_age", expr("age * mult"))
 ```
+
+
 
 ### Q2: What's the difference between repartition and coalesce?
 
@@ -65,6 +73,8 @@ df = df.coalesce(2)
 
 In summary, choose `repartition` when you need a balanced number of partitions regardless of performance costs, and use `coalesce` when you need to reduce partitions efficiently with minimal data movement.
 
+
+
 ### Q3: What's the data skew?
 
 There are more context. Please check: [Data Skew notes](./Data Engineer/Data Skew.md)
@@ -104,6 +114,12 @@ There is more context. Please check: [Data Modelling notes](./Data Engineer/Data
 
 - Inefficient for large datasets: Can be time-consuming and resource-intensive.
 - Overwrites all data: Changes to data in the target system are lost.
+
+
+
+### Q7: Star Schema vs Snowflake Schema
+
+
 
 
 

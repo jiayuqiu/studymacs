@@ -6,4 +6,5 @@ print(sys.version)
 
 
 if __name__ == "__main__":
-    int_demo()
+    # int_demo()
+    print(7.5 * 12)
