@@ -1,0 +1,9 @@
+pyspark==3.5
+xgboost==2.0.3
+pandas
+numpy
+shap
+pyarrow
+jupyter
+matplotlib
+scikit-learn==1.5.2
